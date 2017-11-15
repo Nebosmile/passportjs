@@ -5,5 +5,9 @@ module.exports={
         // pass:"~+3:3;y51unlDCS:2(-e-Cy]",
         // user:"buildsmaster3000",
         'useMongoClient':true,
+    },
+    hash:{
+        length:24,
+        iteration:10000
     }
 }
