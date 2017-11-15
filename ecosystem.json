@@ -1,0 +1,23 @@
+{
+  "apps": [
+    {
+      "name": "game_builds",
+      "script": "./server.js",
+      "instances": "1",
+      "exec_mode": "fork",
+      "max_memory_restart": "2G",
+      "error_file": "/var/log/node/game_builds-err.log",
+      "cwd": "/opt/statichtml/gamespanel",
+      "watch": "true",
+      "env": {
+        "HOST": "127.0.0.1",
+        "PORT": "4200",
+        "PM2_GRACEFUL_LISTEN_TIMEOUT": 1000,
+        "PM2_GRACEFUL_TIMEOUT": 5000,
+        "ASSET_VERSIONING": "file",
+        "NODE_ENV": "production",
+        "NODE_PATH": "./node_modules:./handlers:./models"
+      }
+    }
+  ]
+}
