@@ -4,11 +4,19 @@
 <head>
     <meta charset="utf-8">
 </head>
-
+<style media="screen">
+    label{
+        display:block;
+        margin-bottom: 5px;
+    }
+    label input{
+        margin-left: 10px;
+    }
+</style>
 <body >
     <div id="app">
         <h1>welcome to default template</h1>
-        <form class=""  method="post">
+        <form ref='app_form' class=""  method="post">
             <label> send message
                 <input type="text" name="" v-model='message'>
                 <div class="">
@@ -16,6 +24,21 @@
                 </div>
                 <input @click='send_message' type="button" name="" value="Send">
             </label>
+            <div class="">
+                <label>Name
+                    <input type="text" name="" v-model='message'>
+                </label>
+                <label>login
+                    <input type="text" name="login" v-model='message'>
+                </label>
+                <label>password
+                    <input type="password" name="" v-model='message'>
+                </label>
+                <label>mail
+                    <input type="email" name="" v-model='message'>
+                </label>
+                <input @click='login' type="button" name="" value="Send">
+            </div>
         </form>
     </div>
 

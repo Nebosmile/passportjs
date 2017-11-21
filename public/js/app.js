@@ -20,6 +20,33 @@ var app = new Vue({
 					console.log(data);
 				}
 			})
+		},
+		login(){
+			var form = this.$refs.app_form;
+			var name = form.elements.title;
+			var login = form.elements.login;
+			var password = form.elements.password;
+			var email = form.elements.email;
+
+			var postdata ={
+				name:name,
+				login:login,
+				password:password,
+				email:email,
+			}
+
+
+			$.ajax({
+				url:'/user/registration',
+				processData: false,
+				contentType: false,
+				data:postdata,
+				type:'POST',
+				dataType:'json',
+				success:function(data) {
+					console.log(data);
+				}
+			})
 		}
 	}
 })

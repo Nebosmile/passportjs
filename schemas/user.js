@@ -23,7 +23,7 @@ const user_schema = mongoose.Schema({
 		required:true
 	}
 })
-user_schema.virtual('password'){
+user_schema.virtual('password')
 	.set(function(password) {
 		if(password!=undefined){
 			if(password.length<4){
@@ -39,10 +39,10 @@ user_schema.virtual('password'){
 				config.hash.iteration,
 				config.hash.length,
 				'sha512'
-			)
+			).toString('base64')
 			console.log(this.password_hash);
 		}
 	})
-}
 
-module.exports = mongoose.model("UserSchema", user_schema);
+
+module.exports = mongoose.model("User_reg", user_schema);
