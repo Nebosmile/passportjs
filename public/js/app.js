@@ -21,12 +21,12 @@ var app = new Vue({
 				}
 			})
 		},
-		login(){
+		save_user(){
 			var form = this.$refs.app_form;
-			var name = form.elements.title;
-			var login = form.elements.login;
-			var password = form.elements.password;
-			var email = form.elements.email;
+			var name = form.elements.title.value;
+			var login = form.elements.login.value;
+			var password = form.elements.password.value;
+			var email = form.elements.email.value;
 
 			var postdata ={
 				name:name,
@@ -38,11 +38,31 @@ var app = new Vue({
 
 			$.ajax({
 				url:'/user/registration',
-				processData: false,
-				contentType: false,
 				data:postdata,
 				type:'POST',
 				dataType:'json',
+				success:function(data) {
+					console.log(data);
+				}
+			})
+		},
+		login(){
+			var form = this.$refs.app_form;
+			var login = form.elements.login.value;
+			var password = form.elements.password.value;
+
+
+			var postdata ={
+				login:login,
+				password:password
+			}
+
+
+			$.ajax({
+				url:'/user/login',
+				data:postdata,
+				type:'POST',
+				dataType:'text',
 				success:function(data) {
 					console.log(data);
 				}

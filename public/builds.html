@@ -26,18 +26,19 @@
             </label>
             <div class="">
                 <label>Name
-                    <input type="text" name="" v-model='message'>
+                    <input type="text" name="title" >
                 </label>
                 <label>login
-                    <input type="text" name="login" v-model='message'>
+                    <input type="text" name="login" >
                 </label>
                 <label>password
-                    <input type="password" name="" v-model='message'>
+                    <input type="password" name="password" >
                 </label>
                 <label>mail
-                    <input type="email" name="" v-model='message'>
+                    <input type="email" name="email" >
                 </label>
-                <input @click='login' type="button" name="" value="Send">
+                <input @click='save_user' type="button" value='registration'>
+                <input @click='login' type="button" value='login'>
             </div>
         </form>
     </div>

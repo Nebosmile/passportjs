@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const beautifyUnique = require('mongoose-beautiful-unique-validation');
 mongoose.plugin(beautifyUnique);
 const config = require('../config.js');
+const crypto = require('crypto')
 
 const user_schema = mongoose.Schema({
     name: {
@@ -32,8 +33,8 @@ user_schema.virtual('password')
 		}
 		this._plainPassword = password;
 		if(password){
-			this.salt=crypto.randomBytes(config.hash.length);
-			this.password_hash=crypto.pdkdf2Sync(
+			this.salt=crypto.randomBytes(config.hash.length).toString('base64');
+			this.password_hash=crypto.pbkdf2Sync(
 				password,
 				this.salt,
 				config.hash.iteration,
@@ -43,6 +44,18 @@ user_schema.virtual('password')
 			console.log(this.password_hash);
 		}
 	})
+user_schema.methods.checkPassword=function (password) {
+    if(!password) return false;
+    if(!this.password_hash) return false;
+    return crypto.pbkdf2Sync(
+        password,
+        this.salt,
+        config.hash.iteration,
+        config.hash.length,
+        'sha512'
+    ).toString('base64')==this.password_hash;
+
+}
 
 
 module.exports = mongoose.model("User_reg", user_schema);
