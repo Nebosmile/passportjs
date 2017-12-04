@@ -67,6 +67,60 @@ var app = new Vue({
 					console.log(data);
 				}
 			})
+		},
+		send_message1s(){
+
+					var fd = new FormData();
+					fd.append('message', this.message);
+					return $.ajax({
+						url:'/',
+						processData: false,
+						contentType: false,
+						data:fd,
+						type:'POST',
+						dataType:'json',
+						success:function(data) {
+							console.log('1s message');
+							console.log(data);
+						}
+					})
+
+
+		},
+		send_message2s(){
+
+					var fd = new FormData();
+					fd.append('message', this.message);
+
+					return $.ajax({
+						url:'/2s',
+						processData: false,
+						contentType: false,
+						data:fd,
+						type:'POST',
+						dataType:'json',
+						success:function(data) {
+							console.log('2s message');
+							console.log(data);
+						}
+					})
+
+
+		},
+		async set2s(){
+			return new Promise((resolve)=>{
+				setTimeout(()=>{
+					console.log('2smidle');
+				resolve();
+				},2000)
+			})
+
+		},
+		async send_allmessages(){
+		 	await this.send_message2s();
+			await this.set2s();
+			await this.send_message1s();
+			await console.log('after message');
 		}
 	}
 })
