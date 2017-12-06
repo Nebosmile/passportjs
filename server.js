@@ -1,8 +1,10 @@
 const Koa = require('koa');
 const path = require('path');
 const fs = require('fs');
+const mongoose = require('mongoose');
 const config = require('./config.js');
-
+var db =  mongoose.connect(config.db,config.options);
+mongoose.Promise=Promise;
 
 
 var app = new Koa();

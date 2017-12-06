@@ -5,6 +5,7 @@ const serve = require('koa-static');
 
 const base_controller = require('./controlers/index');
 const user_controller = require('./controlers/user');
+const login = require('./controlers/login');
 
 
 
@@ -15,6 +16,7 @@ router.post('/',base_controller.post_index);
 router.post('/2s',base_controller.post_index2s);
 router.post('/user/registration',user_controller.registr);
 router.post('/user/login',user_controller.login);
+router.post('/login',login.post);
 // router.post('/user/login',user_controller.login)
 // router.post('/user/found',user_controller.found)
 

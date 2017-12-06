@@ -5,7 +5,6 @@ var db =  mongoose.connect(database.db,database.options);
 const fs = require('fs');
 
 // console.log(db);
-mongoose.Promise=Promise;
 
 module.exports={
     async get_index(ctx){
