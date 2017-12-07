@@ -12,12 +12,22 @@ const fs = require('fs');
 exports.post =  async function(ctx,next){
 
 	await passport.authenticate('local', function(err, user, info, status) {
-	    if (user === false) {
-	      ctx.body = { success: false }
-	      ctx.throw(401)
-	    } else {
-	      ctx.body = { success: true }
-	      return ctx.login(user)
-	    }
+		if (err) ctx.throw(err);
+        if (user) {
+            ctx.login(user);
+            ctx.body = {
+                email: user.email,
+                login: user.login,
+                id: user._id,
+            };
+
+            return ctx;
+        } else {
+            if (info) {
+                ctx.body = { status: 404, result: info };
+            }
+            return ctx;
+        }
+
 	})(ctx,next)
 }

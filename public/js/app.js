@@ -68,6 +68,31 @@ var app = new Vue({
 				}
 			})
 		},
+		loginpasp(){
+			var form = this.$refs.app_form;
+			var login = form.elements.login.value;
+			var password = form.elements.password.value;
+
+
+			var postdata ={
+				login:login,
+				password:password
+			}
+
+
+			$.ajax({
+				url:'/login',
+				data:postdata,
+				xhrFields: {
+					withCredentials: true
+				},
+				type:'POST',
+				dataType:'text',
+				success:function(data) {
+					console.log(data);
+				}
+			})
+		},
 		send_message1s(){
 
 					var fd = new FormData();

@@ -5,7 +5,7 @@ let User = require('../../schemas/user.js');
 // Стратегия берёт поля из req.body
 // Вызывает для них функцию
 passport.use(new LocalStrategy({
-    usernameField: 'email', // 'username' by default
+    usernameField: 'login', // 'username' by default
     passwordField: 'password',
     passReqToCallback: true // req for more complex cases
   },
@@ -18,8 +18,8 @@ passport.use(new LocalStrategy({
   //   strategy.error(err)
 
   // TODO: rewrite this, use async/await
-  function(req, email, password, done) {
-    User.findOne({ email }, (err, user) => {
+  function(req, login, password, done) {
+    User.findOne({ login }, (err, user) => {
       if (err) {
         return done(err);
       }
