@@ -31,3 +31,32 @@ exports.post =  async function(ctx,next){
 
 	})(ctx,next)
 }
+exports.access =  async function(ctx,next){
+
+	var aut = await ctx.isAuthenticated()
+	if(aut) {
+		ctx.body = {
+			type: 'access true',
+
+		};
+		return
+	}
+	else{
+		ctx.body = {
+			type: 'access false',
+
+		};
+	}
+	// console.log(ctx.session);
+
+
+}
+exports.logout =  async function(ctx,next){
+
+ 	 await ctx.logout()
+	 ctx.body = {
+		 type: 'exit is true',
+
+	 };
+
+}

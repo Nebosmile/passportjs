@@ -93,6 +93,32 @@ var app = new Vue({
 				}
 			})
 		},
+		access(){
+			$.ajax({
+				url:'/access',
+					xhrFields: {
+					withCredentials: true
+				},
+				type:'GET',
+				dataType:'text',
+				success:function(data) {
+					console.log(data);
+				}
+			})
+		},
+		logout(){
+			$.ajax({
+				url:'/logout',
+					xhrFields: {
+					withCredentials: true
+				},
+				type:'GET',
+				dataType:'text',
+				success:function(data) {
+					console.log(data);
+				}
+			})
+		},
 		send_message1s(){
 
 					var fd = new FormData();
