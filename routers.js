@@ -19,6 +19,7 @@ router.post('/2s',base_controller.post_index2s);
 router.post('/user/registration',user_controller.registr);
 router.post('/user/login',user_controller.login);
 router.post('/login',login.post);
+router.post('/custom',login.custom);
 
 
 // router.post('/user/login',user_controller.login)

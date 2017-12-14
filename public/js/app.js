@@ -3,7 +3,8 @@ console.log('app script is loaded');
 var app = new Vue({
 	el:'#app',
 	data:{
-		message:''
+		message:'',
+		authorization:'',
 	},
 	methods:{
 		send_message(){
@@ -69,6 +70,7 @@ var app = new Vue({
 			})
 		},
 		loginpasp(){
+			var newthis = this;
 			var form = this.$refs.app_form;
 			var login = form.elements.login.value;
 			var password = form.elements.password.value;
@@ -84,12 +86,14 @@ var app = new Vue({
 				url:'/login',
 				data:postdata,
 				xhrFields: {
-					withCredentials: true
+					withCredentials: true,
 				},
 				type:'POST',
-				dataType:'text',
+				dataType:'JSON',
 				success:function(data) {
 					console.log(data);
+					newthis.authorization=data.token;
+					console.log(newthis.authorization);
 				}
 			})
 		},
@@ -97,9 +101,25 @@ var app = new Vue({
 			$.ajax({
 				url:'/access',
 					xhrFields: {
-					withCredentials: true
+					withCredentials: true,
 				},
 				type:'GET',
+				dataType:'text',
+				success:function(data) {
+					console.log(data);
+				}
+			})
+		},
+		jwtauth(){
+			$.ajax({
+				url:'/custom',
+				headers: {
+			    	authorization: this.authorization
+			    },
+				// xhrFields: {
+				// 	withCredentials: true,
+				// },
+				type:'POST',
 				dataType:'text',
 				success:function(data) {
 					console.log(data);

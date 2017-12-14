@@ -1,7 +1,5 @@
 const UserSchema = require('../schemas/user');
 const mongoose = require('mongoose');
-var database= require('../config')
-var db =  mongoose.connect(database.db,database.options);
 const fs = require('fs');
 
 // console.log(db);

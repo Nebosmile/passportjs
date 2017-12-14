@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const config = require('./config.js');
 var db =  mongoose.connect(config.db,config.options);
 mongoose.Promise=Promise;
+mongoose.set('debug', true);
 
 
 var app = new Koa();

@@ -9,5 +9,6 @@ module.exports={
     hash:{
         length:24,
         iteration:10000
-    }
+    },
+    jwtsecret:"mysecretkey",
 }
